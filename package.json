@@ -1,0 +1,28 @@
+{
+  "name": "ece-devops",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scheduler2000/ece-devops.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Scheduler2000/ece-devops/issues"
+  },
+  "homepage": "https://github.com/Scheduler2000/ece-devops#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "husky": "^7.0.4"
+  }
+}
