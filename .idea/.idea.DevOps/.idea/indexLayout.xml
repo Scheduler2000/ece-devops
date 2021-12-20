@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="UserContentModel">
+    <attachedFolders />
+    <explicitIncludes>
+      <Path>.gitattributes</Path>
+      <Path>.gitignore</Path>
+      <Path>CODE-OF-CONDUCT.md</Path>
+      <Path>CONTRIBUTING.md</Path>
+      <Path>DEPRECATION-POLICY.md</Path>
+      <Path>DESIGN-DOC.md</Path>
+      <Path>README.md</Path>
+      <Path>SLA.md</Path>
+      <Path>code/tests</Path>
+      <Path>commitlint.config.js</Path>
+      <Path>docs</Path>
+      <Path>infra</Path>
+      <Path>package-lock.json</Path>
+      <Path>package.json</Path>
+    </explicitIncludes>
+    <explicitExcludes />
+  </component>
+</project>
