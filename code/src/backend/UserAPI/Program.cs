@@ -1,25 +1,43 @@
-var builder = WebApplication.CreateBuilder(args);
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
 
-// Add services to the container.
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+builder.Host.UseSerilog((context, configuration) =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    Uri elasticsearchUri = new(context.Configuration["Elasticsearch:Uri"]);
+    ElasticsearchSinkOptions options = new(elasticsearchUri)
+    {
+        IndexFormat =
+            $"{context.Configuration["ApplicationName"]}-logs-{context.HostingEnvironment.EnvironmentName?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}",
+        AutoRegisterTemplate = true,
+        NumberOfShards = 2,
+        NumberOfReplicas = 1
+    };
+
+    configuration.Enrich.FromLogContext()
+        .Enrich.WithMachineName()
+        .WriteTo.Console()
+        .WriteTo.Elasticsearch(options)
+        .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
+        .ReadFrom.Configuration(context.Configuration);
+});
+
+WebApplication app = builder.Build();
+
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
