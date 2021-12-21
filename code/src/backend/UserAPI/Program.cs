@@ -1,5 +1,7 @@
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
+using UsersAPI.Database;
+using UsersAPI.Database.Repository;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,9 @@ builder.Host.UseSerilog((context, configuration) =>
         .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
         .ReadFrom.Configuration(context.Configuration);
 });
+
+builder.Services.AddSingleton<DapperFactory>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 WebApplication app = builder.Build();
 
