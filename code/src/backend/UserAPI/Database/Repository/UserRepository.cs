@@ -7,12 +7,10 @@ namespace UsersAPI.Database.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly DapperFactory _factory;
-    private readonly ILogger _logger;
 
-    public UserRepository(DapperFactory factory, ILogger logger)
+    public UserRepository(DapperFactory factory)
     {
         _factory = factory;
-        _logger = logger;
     }
 
     public async Task<IEnumerable<User>> GetUsers()
@@ -26,7 +24,7 @@ public class UserRepository : IUserRepository
         return users;
     }
 
-    public async Task<User> GetUser(int id)
+    public async Task<User?> GetUser(int id)
     {
         const string query = "SELECT * FROM users WHERE id = @Id";
 
@@ -52,7 +50,7 @@ public class UserRepository : IUserRepository
 
         using IDbConnection connection = _factory.CreateConnection();
 
-        await connection.ExecuteAsync(query, user);
+        await connection.ExecuteAsync(query, user).ConfigureAwait(false);
     }
 
     public async Task DeleteUser(int id)
@@ -61,6 +59,6 @@ public class UserRepository : IUserRepository
 
         using IDbConnection connection = _factory.CreateConnection();
 
-        await connection.ExecuteAsync(query, new {id});
+        await connection.ExecuteAsync(query, new {id}).ConfigureAwait(false);
     }
 }

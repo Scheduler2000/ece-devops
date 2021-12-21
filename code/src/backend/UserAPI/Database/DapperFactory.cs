@@ -6,14 +6,12 @@ namespace UsersAPI.Database;
 public class DapperFactory
 {
     private readonly IConfiguration _configuration;
-    private readonly ILogger _logger;
-    
+
     private readonly string _connectionString;
 
-    public DapperFactory(IConfiguration configuration, ILogger logger)
+    public DapperFactory(IConfiguration configuration)
     {
         _configuration = configuration;
-        _logger = logger;
         _connectionString = configuration.GetConnectionString("MySqlConnection");
     }
 
@@ -21,5 +19,4 @@ public class DapperFactory
     {
         return new MySqlConnection(_connectionString);
     }
-    
 }
