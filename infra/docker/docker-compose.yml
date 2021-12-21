@@ -37,13 +37,14 @@ services:
     container_name: userapi
     build:
       context: ../../code/src/backend
-      dockerfile: Dockerfile
-    restart: always
+      dockerfile: ../../../infra/docker/backend.Dockerfile
     ports:
       - "5000:5000"
     links:
       - database
-  
+    networks:
+      - devops
+    
   database:
     image: mysql:5
     container_name: mysql5
@@ -54,7 +55,8 @@ services:
       MYSQL_DATABASE: devops-project
     volumes:
       - ./volumes/database:/var/lib/mysql
-
+    networks:
+      - devops
 
 networks:
   devops:
