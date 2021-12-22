@@ -12,7 +12,7 @@ public class DapperFactory
     public DapperFactory(IConfiguration configuration)
     {
         _configuration = configuration;
-        _connectionString = configuration.GetConnectionString("MySqlConnection");
+        _connectionString = Environment.GetEnvironmentVariable("DB_URL") ?? configuration.GetConnectionString("MySqlConnection");
     }
 
     /// <summary>
