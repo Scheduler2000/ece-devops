@@ -8,6 +8,8 @@
 
 [![semantic-release](https://img.shields.io/badge/Release%20%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
+[![CI](https://github.com/jmfiaschi/chewdata/workflows/CI/badge.svg)](https://github.com/Scheduler2000/ece-devops/actions)
+
 # Team
 
 | Name          | Position
@@ -22,6 +24,7 @@
 | `code/src`                  | Folder containing the impl of the user API with CRUD operations
 | `code/tests`                | Folder containing tests related to the above REST API
 | `infra`                     | All the docker logic, Kubernetes base setup and MySql script
+| `infra/IaC`                 | All files related to Infrastructure as Code (Vagrant, Ansible)
 | `infra/docker`              | docker related things : dockerfile, docker-compose configuration files 
 | `infra/docker/volumes`      | Folder containing severals docker volumes for dockerize the app with a state
 | `infra/kubernetes`          | Kubernetes related things: deployment, configmap, service
@@ -31,7 +34,7 @@
 | `infra/kubernetes/database` | Sql script for set up project-devops database with empty tables
 | `docs`                      | All the business, architecture and guideline information
 | `docs/image`                | Images used in the markdown files of the root description.
-| `/`                         | git hook for ensuring the good format of git commit for the generation of a changelog in an automated way
+| `/`                         | git hook for ensuring the good format of git commit for the changelog generation
 | `/`                         | configuration files related to [semantic-release](https://github.com/semantic-release/semantic-release)
 
 # Branches
@@ -130,6 +133,7 @@ You can also run the project using kubernetes instead of Docker Compose :
 | Orchestration with Docker Compose                                                 |  DC  |     +2     |
 | Orchestration with Kubernetes	                                                    | KUB  |     +3     |
 | Monitoring Kibana/Elasticsearch                                                   | MON  |     +2     |
+| Infrastructure as code using Ansible and Vagrant (partially)                      | MON  |     +2     |
 | Accurate project documentation in README.md file + Schema                         | DOC  |     +3     |
 | Bonus Tasks : C#, Mysql, Swagger,                                                 | BNS  |     +1     |
 | Bonus Tasks : conventional commits, git hooks, changelog gen                      | BNS  |     +1     |
