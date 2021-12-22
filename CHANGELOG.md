@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/Scheduler2000/ece-devops/compare/v1.1.0...v1.1.1) (2021-12-22)
+
+
+### Bug Fixes
+
+* **infra:** fix kubernetes configuration files ([13e12e8](https://github.com/Scheduler2000/ece-devops/commit/13e12e8a3943d6257070f4841f7d265c07343e52))
+
 ## 1.1.0 (2021-12-22)
 
 
