@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Scheduler2000/ece-devops/compare/v1.1.1...v1.2.0) (2021-12-22)
+
+
+### Features
+
+* **infra:** setup IaC ([892b266](https://github.com/Scheduler2000/ece-devops/commit/892b26603f1a8ffae78f90d32aae275ae1b0c0b2))
+
 ### [1.1.1](https://github.com/Scheduler2000/ece-devops/compare/v1.1.0...v1.1.1) (2021-12-22)
 
 
