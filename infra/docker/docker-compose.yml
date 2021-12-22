@@ -33,11 +33,11 @@ services:
       - devops
   
   api:
-    image: userapi
+    image:  salamander93/ece-devops-2021:latest
     container_name: userapi
-    build:
-      context: ../../code/src/backend
-      dockerfile: ../../../infra/docker/backend.Dockerfile
+#    build:
+#      context: ../../code/src/backend
+#      dockerfile: ../../../infra/docker/backend.Dockerfile
     ports:
       - "5000:5000"
     links:

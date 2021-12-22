@@ -229,7 +229,7 @@ ClientBin/
 node_modules/
 bower_components/
 orleans.codegen.cs
-
+.idea/
 # RIA/Silverlight projects
 Generated_Code/
 
