@@ -20,26 +20,26 @@ spec:
           ports:
             - containerPort: 9200
           env:
-            - name: node.name
+            - name: "node.name"
               valueFrom:
                 configMapKeyRef:
                   name: elasticsearch-config
                   key: node-name
-            - name: cluster.name
-                valueFrom:
-                  configMapKeyRef:
-                    name: elasticsearch-config
-                    key: cluster-name        
-            - name: cluster.initial_master_nodes
-                valueFrom:
-                  configMapKeyRef:
-                    name: elasticsearch-config
-                    key: cluster-initial-master-nodes     
-            - name: bootstrap.memory_lock=true
-                valueFrom:
-                  configMapKeyRef:
-                    name: elasticsearch-config
-                    key: bootstrap-memory-lock
+            - name: "cluster.name"
+              valueFrom:
+                configMapKeyRef:
+                  name: elasticsearch-config
+                  key: cluster-name        
+            - name: "cluster.initial_master_nodes"
+              valueFrom:
+                configMapKeyRef:
+                  name: elasticsearch-config
+                  key: cluster-initial-master-nodes     
+            - name: "bootstrap.memory_lock"
+              valueFrom:
+                configMapKeyRef:
+                  name: elasticsearch-config
+                  key: bootstrap-memory-lock
 ---
 apiVersion: v1
 kind: Service

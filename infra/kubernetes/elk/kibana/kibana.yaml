@@ -26,10 +26,10 @@ spec:
                   name: kibana-config
                   key: kibana-url
             - name: ELASTICSEARCH_HOSTS
-                valueFrom:
-                  configMapKeyRef:
-                    name: kibana-config
-                    key: kibana-host
+              valueFrom:
+                configMapKeyRef:
+                  name: kibana-config
+                  key: kibana-host
 ---
 apiVersion: v1
 kind: Service

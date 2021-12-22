@@ -6,4 +6,4 @@ data:
   node-name: elasticsearch
   cluster-name: elasticsearch-docker-cluster
   cluster-initial-master-nodes: elasticsearch
-  bootstrap-memory-lock: true
+  bootstrap-memory-lock: "true"
