@@ -19,7 +19,7 @@ public class UserController : Controller
     }
 
     [HttpGet("fetch-user/{id:int}")]
-    public async Task<IActionResult> GetUser(int id)
+    public async Task<ActionResult<User>> GetUser(int id)
     {
         User? user = await _repository.GetUser(id).ConfigureAwait(false);
         string clientIp = Request.Host.Value;
@@ -35,11 +35,12 @@ public class UserController : Controller
     }
 
     [HttpGet("fetch-users")]
-    public async Task<IActionResult> GetUsers()
+    public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
         var users = await _repository.GetUsers().ConfigureAwait(false);
 
-        string clientIp = Request.Host.Value;
+        string clientIp = Request.Host.Value ?? "test client";
+
 
         if (!users.Any())
         {
@@ -54,7 +55,7 @@ public class UserController : Controller
     [HttpPost("create-user")]
     public async Task<IActionResult> CreateUser([FromBody] User user)
     {
-        string clientIp = Request.Host.Value;
+        string clientIp = Request.Host.Value ?? "test client";
 
         try
         {
@@ -75,16 +76,16 @@ public class UserController : Controller
     [HttpPut("update-user/{id:int}")]
     public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
     {
-        string clientIp = Request.Host.Value;
+        string clientIp = Request.Host.Value ?? "test client";
 
         try
         {
             if (await _repository.GetUser(id).ConfigureAwait(false) == null)
                 return NotFound();
-            
+
             user.Id = id;
             await _repository.UpdateUser(user).ConfigureAwait(false);
-            
+
             _logger.Information("User {@User} has been updated by client with IP : {@IP}", user, clientIp);
 
             return NoContent();
@@ -100,9 +101,9 @@ public class UserController : Controller
     [HttpDelete("delete-user/{id:int}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
-        string clientIp = Request.Host.Value;
+        string clientIp = Request.Host.Value ?? "test client";
         User? user = default;
-        
+
         try
         {
             user = await _repository.GetUser(id).ConfigureAwait(false);

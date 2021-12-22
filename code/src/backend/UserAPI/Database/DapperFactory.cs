@@ -15,6 +15,15 @@ public class DapperFactory
         _connectionString = configuration.GetConnectionString("MySqlConnection");
     }
 
+    /// <summary>
+    ///     This Constructor is for testing purpopses only.
+    /// </summary>
+    /// <param name="connectionString"></param>
+    public DapperFactory(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+
     public IDbConnection CreateConnection()
     {
         return new MySqlConnection(_connectionString);
