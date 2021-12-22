@@ -1,0 +1,7 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kibana-config
+data:
+  elasticsearch-url: kibana-service
+  elasticsearch-host: kibana-service
