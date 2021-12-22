@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
@@ -43,8 +44,10 @@ builder.Services.AddSwaggerGen(setup => setup.SwaggerDoc("v1", new OpenApiInfo
     }
 }));
 
-builder.Services.AddSingleton<DapperFactory>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services
+    .AddSingleton<DapperFactory>()
+    .AddScoped<IUserRepository, UserRepository>()
+    .AddHealthChecks();
 
 WebApplication app = builder.Build();
 
@@ -54,6 +57,11 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
+/* here the logic related to the verification of all components used/linked to this microservice.
+ * here we return true every time but in real case you should not do that. 
+ */
+app.UseHealthChecks("/health", new HealthCheckOptions {Predicate = registration => true});
 
 app.MapControllers();
 
