@@ -35,18 +35,22 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public async Task CreateUser(User user)
+    public async Task<int> CreateUser(User user)
     {
-        const string query = "INSERT INTO users (first_name, last_name, age) VALUES (@FirstName, @LastName, @Age)";
+        const string query = @"INSERT INTO users (firstname, lastname, age) VALUES (@FirstName, @LastName, @Age);
+                               SELECT  CAST(LAST_INSERT_ID() as SIGNED); 
+        ";
 
         using IDbConnection connection = _factory.CreateConnection();
 
-        await connection.ExecuteAsync(query, user).ConfigureAwait(false);
+        int id = await connection.QuerySingleAsync<int>(query, user).ConfigureAwait(false);
+
+        return id;
     }
 
     public async Task UpdateUser(User user)
     {
-        const string query = "UPDATE users SET first_name = @FirstName, last_name = @LastName, age = @Age WHERE id = @Id";
+        const string query = "UPDATE users SET firstname = @FirstName, lastname = @LastName, age = @Age WHERE id = @Id";
 
         using IDbConnection connection = _factory.CreateConnection();
 

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace UsersAPI.Models;
 
@@ -11,5 +12,4 @@ public class User
     public string LastName { get; set; }
 
     public int Age { get; set; }
-    
 }
