@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
 using UsersAPI.Database;
@@ -29,6 +30,18 @@ builder.Host.UseSerilog((context, configuration) =>
         .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
         .ReadFrom.Configuration(context.Configuration);
 });
+
+builder.Services.AddSwaggerGen(setup => setup.SwaggerDoc("v1", new OpenApiInfo
+{
+    Description = "User web api implementation made with Asp.Net 6.0",
+    Title = "User Api",
+    Version = "v1",
+    Contact = new OpenApiContact
+    {
+        Name = "Tasnim Bennacer",
+        Url = new Uri("https://github.com/scheduler2000/")
+    }
+}));
 
 builder.Services.AddSingleton<DapperFactory>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
